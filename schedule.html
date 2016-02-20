@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
-
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,10 +10,11 @@
         <title>Productivity Survey</title>
 
         <!-- Bootstrap Core CSS -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400italic,700italic,400,700" rel="stylesheet" type="text/css">
-        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">       <link href="css/main.css" rel="stylesheet">
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="css/main.css" rel="stylesheet" type="text/css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -27,39 +26,57 @@
 
     <body>
         <!-- Page Content -->
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
-                <div class="container">
-                    <div class="col-lg-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title text-center">Schedule</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div class="col-sm-6">
-                                    <strong>Task:</strong> Schedule a <em>3 hour</em> task that's due on Friday.
-                                </div>
-                                <div class="col-sm-3">
-                                    <strong>Time Remaining:</strong> 3 Hours
-                                </div>
-                                <div class="col-sm-3">
-                                    <a id="next-button" class="btn btn-primary btn-lg">
-                                        <i class="fa fa-check"></i> Next</a>
-                                </div>
-                                <table id="calendar" class="table table-bordered"></table>
-                            </div>
+                <div class="col-lg-12">
+                    <h1>When are you mostly to work on this task?</h1>
+                    <p>
+                        Click and drag over the calendar to schedule out the blocks of time that <em>you</em> are most
+                        likely to get something done. Please answer honestly. If you typically leave something for the last
+                        minute, show it.
+
+                        Times blocked out in <span class="busy">red</span> are busy, so you'll need to schedule your
+                        time around those tasks.
+                    </p>
+                </div>
+            </div>
+            <div class="row task-row">
+                <div class="col-lg-4">
+                    <div class="custom-panel">
+                        <span class="schedule-heading">TASK</span><br>
+                        <strong>Start:</strong> 5pm on Monday<br>
+                        <strong>End:</strong> 5pm on Thursday
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="custom-panel">
+                        <span class="schedule-heading">TIME REMAINING</span>
+                        <span class="big-text">3:00</span>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="custom-panel">
+                        <span class="schedule-heading">NEXT QUESTION</span><br>
+                        <a href="schedule.html" type="button" class="btn btn-primary next-button" disabled>Schedule</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center">Schedule</h3>
                         </div>
+                        <table id="calendar" class="table table-bordered"></table>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- jQuery Version 1.11.1 -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script src="js/calendar.js"></script>
+        <!-- jQuery Version 1.11.1 -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script src="js/calendar.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-</body>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+    </body>
 </html>

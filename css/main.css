@@ -12,19 +12,23 @@ h1 {
     padding: 0;
 }
 
-#calendar td.highlighted {
+.highlighted {
     background-color: #A4DC92;
 }
 
-#calendar td.busy {
+td.busy {
     background-color: #D86464;
 }
 
-#calendar td.startTime {
+.busy {
+    color: #D86464;
+}
+
+.startTime {
     background-color: #6993E2;
 }
 
-#calendar td#endTime {
+.endTime {
     background-color: #6993E2;
 }
 
@@ -35,6 +39,8 @@ h1 {
 .usernameRow {
     padding: 1em 0;
 }
+
+.task-row { }
 
 .panel-body {
     min-height: 18em;
@@ -79,4 +85,27 @@ h1 {
 
 .navbar-default {
     background-color: #34538A;
+}
+
+.big-text {
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 2.4em;
+    display: block;
+    line-height: 1.0em;
+}
+
+.schedule-heading {
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.8em;
+}
+
+.custom-panel {
+    text-align: center;
+    color: cornflowerblue;
+    margin-bottom: 10px;
+}
+
+.next-button {
+    padding: 0.4em 2em;
 }
