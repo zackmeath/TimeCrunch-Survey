@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Productivity Survey</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="http://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400italic,700italic,400,700" rel="stylesheet" type="text/css">
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">       <link href="css/main.css" rel="stylesheet">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <form class="navbar-form pull-right">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Username or Square $Cashtag">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-success">Login</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </nav>
+        <!-- Page Content -->
+        <div class="container-fluid">
+
+            <div class="row headingRow">
+                <div class="container">
+                    <div class="col-lg-12 text-center">
+                        <h1 class="title">When Do You Work Best?</h1>
+                        <p class="lead">We are conducting a <em>social experiment</em> to see when people are most productive throughout
+                            their week. We need your honest opinion about when you are most likely to accomplish a given task.
+                            Whoever earns the most points will win $30!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row headingRow">
+                <div class="container">
+                    <div class="col-lg-4 text-center">
+                        <h2><i class="fa fa-user"></i> &nbsp;Basic Profile</h2>
+                        <p>We're looking for <strong>correlations</strong> between different demographics and how they work.</p>
+                    </div>
+                    <div class="col-lg-4 text-center">
+                        <h2><i class="fa fa-random"></i> &nbsp;Random Scenario</h2>
+                        <p>You will be given a <strong>random scenario</strong> for a task. That task can be split up however you'd like
+                            throughout the week.</p>
+                    </div>
+                    <div class="col-lg-4 text-center">
+                        <h2><i class="fa fa-calendar"></i>&nbsp;Schedule the Task</h2>
+                        <p><strong>Click and drag</strong> within the calendar below to schedule a timeslot for the task.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row usernameRow">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="container">
+                    <div class="col-sm-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Basic Info</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label for="gender">Gender: </label><br>
+                                    <div class="btn-group" id="gender" data-toggle="buttons">
+                                        <label class="btn btn-default">
+                                            <input type="radio" id="male" value="1" /> Male
+                                        </label>
+                                        <label class="btn btn-default active">
+                                            <input type="radio" id="no-gender" value="2" checked="checked" /> --
+                                        </label>
+                                        <label class="btn btn-default">
+                                            <input type="radio" id="female" value="3" /> Female
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="age">How old are you?</label><br>
+                                    <select class="selectpicker">
+                                        <option>&lt; 13</option>
+                                        <option>14-17</option>
+                                        <option selected>18-21</option>
+                                        <option>21-30</option>
+                                        <option>30-50</option>
+                                        <option>50+</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="procrastinor">When do you get typically get things done?</label><br>
+                                    <div class="btn-group" id="procrastinor" data-toggle="buttons">
+                                        <label class="btn btn-default">
+                                            <input type="radio" id="procrastinator" value="1" />Early
+                                        </label>
+                                        <label class="btn btn-default">
+                                            <input type="radio" id="not-procrastinator" value="2" />Ontime
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Sleep Schedule</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label for="wakeup">What time do you typically wake up?</label><br>
+                                    <select class="selectpicker">
+                                        <option>5am</option>
+                                        <option>6am</option>
+                                        <option>7am</option>
+                                        <option selected>8am</option>
+                                        <option>9am</option>
+                                        <option>10am</option>
+                                        <option>11am</option>
+                                        <option>12pm</option>
+                                        <option>1pm</option>
+                                        <option>2pm</option>
+                                        <option>3pm</option>
+                                        <option>4pm</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="bedtime">What time do you typically go to bed?</label><br>
+                                    <select class="selectpicker">
+                                        <option>8pm</option>
+                                        <option>9pm</option>
+                                        <option>10pm</option>
+                                        <option selected>11pm</option>
+                                        <option>12am</option>
+                                        <option>1am</option>
+                                        <option>2am</option>
+                                        <option>3am</option>
+                                        <option>4am</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Work Schedule</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label for="jobstart">What time do you go to work?</label><br>
+                                    <select class="selectpicker">
+                                        <option>5am</option>
+                                        <option>6am</option>
+                                        <option>7am</option>
+                                        <option selected>8am</option>
+                                        <option>9am</option>
+                                        <option>10am</option>
+                                        <option>11am</option>
+                                        <option>12pm</option>
+                                        <option>1pm</option>
+                                        <option>2pm</option>
+                                        <option>3pm</option>
+                                        <option>4pm</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="jobend">What time do you get home from work?</label><br>
+                                    <select class="selectpicker">
+                                        <option>2pm</option>
+                                        <option>3pm</option>
+                                        <option>3pm</option>
+                                        <option >5pm</option>
+                                        <option selected>6pm</option>
+                                        <option>7pm</option>
+                                        <option>8pm</option>
+                                        <option>9pm</option>
+                                        <option>10pm</option>
+                                        <option>11pm</option>
+                                        <option>12am</option>
+                                        <option>1am</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 text-center"></div>
+                    <div class="col-lg-6 text-center">
+                        <div class="input-group input-group-lg">
+                            <input type="text" class="form-control" placeholder="Username or Square $Cashtag">
+                            <div class="input-group-btn">
+                                <a href="schedule.html" type="button" class="btn btn-primary">Create Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+            <!-- /.container -->
+
+            <!-- jQuery Version 1.11.1 -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+            <!-- Bootstrap Core JavaScript -->
+            <script src="js/bootstrap.min.js"></script>
+
+            <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+
+            <!-- Latest compiled and minified JavaScript -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+        </body>
+
+    </html>

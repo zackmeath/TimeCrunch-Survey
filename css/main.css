@@ -1,0 +1,82 @@
+h1 {
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+}
+
+#calendar .colHeading {
+    width: 6em;
+    text-align: center;
+}
+
+#calendar td {
+    padding: 0;
+}
+
+#calendar td.highlighted {
+    background-color: #A4DC92;
+}
+
+#calendar td.busy {
+    background-color: #D86464;
+}
+
+#calendar td.startTime {
+    background-color: #6993E2;
+}
+
+#calendar td#endTime {
+    background-color: #6993E2;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.usernameRow {
+    padding: 1em 0;
+}
+
+.panel-body {
+    min-height: 18em;
+}
+
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+    width: 100% !important;
+    max-width: 7em;
+}
+
+.headingRow {
+    background-color: cornflowerblue;
+    color: white;
+}
+
+.headingRow p em {
+    color: #C7D2FF;
+}
+
+.headingRow h2 {
+    color: #446092;
+}
+
+.headingRow strong {
+    color: #446092;
+}
+
+.title {
+    padding: 1em;
+    font-size: 4em;
+}
+
+.navbar-form input {
+    min-width: 16em;
+}
+
+.navbar {
+    border-radius: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+}
+
+.navbar-default {
+    background-color: #34538A;
+}
