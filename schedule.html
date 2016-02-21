@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="row score-row">
-                <span class="username">$liam</span>
+                <span class="username" id="username">$liam</span>
                 <span class="label label-primary points">2pts</span>
             </div>
             <div class="row game-row">
@@ -55,13 +55,13 @@
                 <div class="col-lg-4">
                     <div class="custom-panel">
                         <span class="schedule-heading">TIME REMAINING</span>
-                        <span class="big-text">3:00</span>
+                        <span class="big-text" id="time-remaining">6:00</span>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="custom-panel">
                         <span class="schedule-heading">NEXT QUESTION</span><br>
-                        <a href="schedule.html" type="button" class="btn btn-primary next-button" disabled>Next <i class="fa
+                        <a href="schedule.html" type="button" class="btn btn-primary" id="next-button" onclick="next();">Next <i class="fa
                                 fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -80,6 +80,7 @@
 
             <!-- jQuery Version 1.11.1 -->
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+            <script src="js/utils.js"></script>
             <script src="js/calendar.js"></script>
 
             <!-- Bootstrap Core JavaScript -->

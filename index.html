@@ -31,9 +31,9 @@
             <div class="container-fluid">
                 <form class="navbar-form pull-right">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Username or Square $Cashtag">
+                        <input type="text" class="form-control" placeholder="Username or Square $Cashtag" id="username">
                         <div class="input-group-btn">
-                            <button type="button" class="btn btn-success">Login</button>
+                            <button type="button" class="btn btn-success" onclick="login();">Login</button>
                         </div>
                     </div>
                 </form>
@@ -215,7 +215,7 @@
                         <div class="input-group input-group-lg">
                             <input type="text" class="form-control" placeholder="Username or Square $Cashtag">
                             <div class="input-group-btn">
-                                <a href="schedule.html" type="button" class="btn btn-primary">Create Profile</a>
+                                <button type="button" class="btn btn-primary" onclick="signup();">Create Profile</a>
                             </div>
                         </div>
                     </div>
@@ -226,6 +226,9 @@
 
             <!-- jQuery Version 1.11.1 -->
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+            <script src="js/utils.js"></script>
+            <script src="js/login.js"></script>
 
             <!-- Bootstrap Core JavaScript -->
             <script src="js/bootstrap.min.js"></script>

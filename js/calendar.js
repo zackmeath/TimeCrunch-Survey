@@ -1,49 +1,46 @@
-(function() {
-    var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+var timeslots;
+var timeslotsRemaining;
+var startInterval;
+var startDay;
+var endTime;
+var daysUntilDueDate;
+var numHoursAwake = 15;
 
-    Date.prototype.getMonthName = function() {
-        return months[ this.getMonth() ];
-    };
-    Date.prototype.getDayName = function() {
-        return days[ this.getDay() ];
-    };
-})();
+function generateTask(){
+    timeslots = randomInt(1, 10);
+    timeslotsRemaining = timeslots;
+    $('#time-remaining').text(timeslotsRemaining + ":00");
+    $('#next-button').attr("disabled", true);
 
-function formatAMPM(date) {
-    var hours = date.getHours();
-    var minutes = date.getMinutes();
+    startInterval = randomInt(0, numHoursAwake);
+    startDay = randomInt(0, 7);
 
-    if (hours === 12 && minutes === 0) {
-        return 'noon'
-    }
+    endTime = 21;
+    daysUntilDueDate = randomInt(1, 14);
 
-    var ampm = hours >= 12 ? 'pm' : 'am';
-    hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
-    minutes = minutes < 10 ? '0'+minutes : minutes;
-    var strTime = hours + ':' + minutes + ' ' + ampm;
-    return strTime;
+    generateTable();
 }
 
+function next() {
+    // TODO: send ajax request to server here
+    generateTask();
+}
 
-$(document).ready(function() {
+function generateTable() {
     var table = document.getElementById("calendar");
     var tbody = document.createElement('tbody');
 
-    var numCols = 7;
-    var numHoursAwake = 15
-    var intervalsPerHour = 2
-    var numRows = intervalsPerHour * numHoursAwake
+    var numCols = daysUntilDueDate;
+    var intervalsPerHour = 1;
+    var numRows = intervalsPerHour * numHoursAwake;
 
-    var dayOfWeek = 1;// TODO Random
+    var dayOfWeek = startDay;
     var hour = 8; // TODO selected from above
     var minute = "00";
     var time = new Date();
     time.setHours(8);
     time.setMinutes(0);
     time.setDate(dayOfWeek);
-
 
     // table headings
     var thead = document.createElement('thead');
@@ -61,13 +58,12 @@ $(document).ready(function() {
     thead.appendChild(tr);
     table.appendChild(thead);
 
-
     for (var row = 0; row < numRows; row++) {
         var tr = document.createElement('tr');
 
         var timeLabel = document.createElement('td');
         timeLabel.className = "colHeading"
-        timeLabel.appendChild(document.createTextNode(formatAMPM(time)));
+        timeLabel.appendChild(document.createTextNode(time.getFormattedTime()));
         time.setMinutes(time.getMinutes() + (60/intervalsPerHour))
 
         tr.appendChild(timeLabel);
@@ -78,29 +74,57 @@ $(document).ready(function() {
         tbody.appendChild(tr);
     }
     table.appendChild(tbody);
-});
+}
 
 $(function () {
-  var isMouseDown = false,
-    isHighlighted;
-  $("#calendar td")
+    var username = readCookie('username');
+    $("#username").text(readCookie('username'));
+
+    generateTask();
+
+    var isMouseDown = false;
+    var isHighlighted = false;
+
+    $("#calendar td")
     .mousedown(function () {
-      isMouseDown = true;
-      $(this).toggleClass("highlighted");
-      isHighlighted = $(this).hasClass("highlighted");
-      return false; // prevent text selection
+        isMouseDown = true;
+        var alreadyHighlighted = $(this).hasClass("highlighted");
+        if (alreadyHighlighted) {
+            timeslotsRemaining = Math.min(timeslotsRemaining+1, timeslots);
+            $(this).toggleClass("highlighted");
+            isHighlighted = $(this).hasClass("highlighted");
+        } else {
+            if (timeslotsRemaining > 0) {
+                timeslotsRemaining--;
+                $(this).toggleClass("highlighted");
+                isHighlighted = $(this).hasClass("highlighted");
+            }
+        }
+        $('#time-remaining').text(timeslotsRemaining + ":00");
+        $('#next-button').attr("disabled",timeslotsRemaining > 0);
+        return false; // prevent text selection
     })
     .mouseover(function () {
-      if (isMouseDown) {
-        $(this).toggleClass("highlighted", isHighlighted);
-      }
+        if (isMouseDown) {
+            if (isHighlighted) {
+                if (timeslotsRemaining > 0) {
+                    $(this).toggleClass("highlighted", isHighlighted);
+                    timeslotsRemaining--;
+                }
+            } else {
+                $(this).toggleClass("highlighted", isHighlighted);
+                timeslotsRemaining = Math.min(timeslotsRemaining+1, timeslots);
+            }
+        $('#time-remaining').text(timeslotsRemaining + ":00");
+        $('#next-button').attr("disabled",timeslotsRemaining > 0);
+        }
     })
     .bind("selectstart", function () {
-      return false;
+        return false;
     })
 
-  $(document)
+    $(document)
     .mouseup(function () {
-      isMouseDown = false;
+        isMouseDown = false;
     });
 });

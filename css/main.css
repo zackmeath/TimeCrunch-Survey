@@ -2,9 +2,7 @@ body {
     background-color: #EEEEEE;
 }
 
-.container {
-    background-color: white;
-}
+.container { }
 
 h1 {
     font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -15,6 +13,9 @@ h1 {
     width: 6em;
     text-align: center;
     font-size: 0.9em;
+    position: relative;
+    top: -9px;
+    background-color: white;
 }
 
 #calendar td {
