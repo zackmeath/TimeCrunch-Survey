@@ -33,7 +33,7 @@ $(document).ready(function() {
 
     var numCols = 7;
     var numHoursAwake = 15
-    var intervalsPerHour = 1
+    var intervalsPerHour = 2
     var numRows = intervalsPerHour * numHoursAwake
 
     var dayOfWeek = 1;// TODO Random

@@ -1,3 +1,11 @@
+body {
+    background-color: #EEEEEE;
+}
+
+.container {
+    background-color: white;
+}
+
 h1 {
     font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 400;
@@ -6,6 +14,7 @@ h1 {
 #calendar .colHeading {
     width: 6em;
     text-align: center;
+    font-size: 0.9em;
 }
 
 #calendar td {
@@ -40,7 +49,11 @@ td.busy {
     padding: 1em 0;
 }
 
-.task-row { }
+.score-row {
+    background-color: cornflowerblue;
+    text-align: center;
+    padding: 1em;
+}
 
 .panel-body {
     min-height: 18em;
@@ -54,6 +67,10 @@ td.busy {
 .headingRow {
     background-color: cornflowerblue;
     color: white;
+}
+
+.headingRow div {
+    padding: 0 2em;
 }
 
 .headingRow p em {
@@ -79,7 +96,7 @@ td.busy {
 
 .navbar {
     border-radius: 0 !important;
-    margin: 0 !important;
+    margin: 0 -15px !important;
     border: none !important;
 }
 
@@ -108,4 +125,28 @@ td.busy {
 
 .next-button {
     padding: 0.4em 2em;
+}
+
+.username {
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.5em;
+    color: white;
+    margin: 0.2em;
+}
+
+.points {
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.5em;
+    color: white;
+    margin: 0.2em;
+}
+
+p {
+    font-size: 1.2em;
+}
+
+.instructions {
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #B1CEFF;
+    font-size: 1.0em;
 }
