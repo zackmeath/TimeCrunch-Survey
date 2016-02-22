@@ -88,35 +88,35 @@
                                     <label for="gender">Gender: </label><br>
                                     <div class="btn-group" id="gender" data-toggle="buttons">
                                         <label class="btn btn-default">
-                                            <input type="radio" id="male" value="1" /> Male
+                                            <input type="radio" name="gender" value="male" /> Male
                                         </label>
                                         <label class="btn btn-default active">
-                                            <input type="radio" id="no-gender" value="2" checked="checked" /> --
+                                            <input type="radio" name="gender" value="no-gender" checked="checked" /> --
                                         </label>
                                         <label class="btn btn-default">
-                                            <input type="radio" id="female" value="3" /> Female
+                                            <input type="radio" name="gender" value="female" /> Female
                                         </label>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="age">How old are you?</label><br>
-                                    <select class="selectpicker">
+                                    <select id="age" class="selectpicker">
                                         <option>&lt; 13</option>
                                         <option>14-17</option>
                                         <option selected>18-21</option>
-                                        <option>21-30</option>
-                                        <option>30-50</option>
-                                        <option>50+</option>
+                                        <option>22-30</option>
+                                        <option>31-50</option>
+                                        <option>51+</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="procrastinor">When do you get typically get things done?</label><br>
-                                    <div class="btn-group" id="procrastinor" data-toggle="buttons">
+                                    <label for="procrastinator">When do you get typically get things done?</label><br>
+                                    <div class="btn-group" id="work-ethic" data-toggle="buttons">
                                         <label class="btn btn-default">
-                                            <input type="radio" id="procrastinator" value="1" />Early
+                                            <input type="radio" name="work-ethic" value="procrastinator"/>Early
                                         </label>
                                         <label class="btn btn-default">
-                                            <input type="radio" id="not-procrastinator" value="2" />Ontime
+                                            <input type="radio" name="work-ethic" value="not-procrastinator" />Ontime
                                         </label>
                                     </div>
                                 </div>
@@ -132,7 +132,7 @@
                             <div class="panel-body">
                                 <div class="form-group">
                                     <label for="wakeup">What time do you typically wake up?</label><br>
-                                    <select class="selectpicker">
+                                    <select class="selectpicker" id="wakeup">
                                         <option>5am</option>
                                         <option>6am</option>
                                         <option>7am</option>
@@ -150,7 +150,7 @@
 
                                 <div class="form-group">
                                     <label for="bedtime">What time do you typically go to bed?</label><br>
-                                    <select class="selectpicker">
+                                    <select class="selectpicker" id="bedtime">
                                         <option>8pm</option>
                                         <option>9pm</option>
                                         <option>10pm</option>
@@ -174,7 +174,7 @@
                             <div class="panel-body">
                                 <div class="form-group">
                                     <label for="jobstart">What time do you go to work?</label><br>
-                                    <select class="selectpicker">
+                                    <select class="selectpicker" id="jobstart">
                                         <option>5am</option>
                                         <option>6am</option>
                                         <option>7am</option>
@@ -192,7 +192,7 @@
 
                                 <div class="form-group">
                                     <label for="jobend">What time do you get home from work?</label><br>
-                                    <select class="selectpicker">
+                                    <select class="selectpicker" id="jobend">
                                         <option>2pm</option>
                                         <option>3pm</option>
                                         <option>3pm</option>
@@ -213,7 +213,8 @@
                     <div class="col-lg-3 text-center"></div>
                     <div class="col-lg-6 text-center">
                         <div class="input-group input-group-lg">
-                            <input type="text" class="form-control" placeholder="Username or Square $Cashtag">
+                            <input type="text" class="form-control" placeholder="Username or Square $Cashtag"
+                            id="new-username">
                             <div class="input-group-btn">
                                 <button type="button" class="btn btn-primary" onclick="signup();">Create Profile</a>
                             </div>

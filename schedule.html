@@ -45,6 +45,9 @@
                 <span class="label label-primary points">2pts</span>
             </div>
             <div class="row game-row">
+                <div id="error-alert" class="alert alert-danger" style="margin:0.6em;">
+                    <strong>Uh oh!</strong> You still have more time slots to assign below.
+                </div>
                 <div class="col-lg-4">
                     <div class="custom-panel">
                         <span class="schedule-heading">TASK</span><br>
@@ -61,7 +64,7 @@
                 <div class="col-lg-4">
                     <div class="custom-panel">
                         <span class="schedule-heading">NEXT QUESTION</span><br>
-                        <a href="schedule.html" type="button" class="btn btn-primary" id="next-button" onclick="next();">Next <i class="fa
+                        <button onclick="next();" type="button" class="btn btn-primary" id="next-button" onclick="next();">Next <i class="fa
                                 fa-arrow-right"></i></a>
                     </div>
                 </div>
