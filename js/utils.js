@@ -42,7 +42,7 @@ function randomInt(min,max) {
         var minutes = this.getMinutes();
 
         if (hours === 12 && minutes === 0) {
-            return 'noon'
+            return 'NOON'
         }
 
         var ampm = hours >= 12 ? 'pm' : 'am';

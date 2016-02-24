@@ -1,3 +1,7 @@
+.container-fluid {
+    padding: 0;
+}
+
 body {
     background-color: #EEEEEE;
 }
@@ -9,11 +13,11 @@ h1 {
     font-weight: 400;
 }
 
-#calendar .firstTH {
+#calendar th:first-child {
     width: 5em;
 }
 
-#calendar .colHeading {
+#calendar .column-heading {
     width: 5em;
     text-align: right;
     font-size: 0.9em;
@@ -24,24 +28,22 @@ h1 {
 
 #calendar td {
     padding: 0;
-    border: none !important;
-    border-top: 1px solid #B5B5B5 !important;
+    /* border: none; */
+    /* border-top: 1px solid #B5B5B5; */
 }
 
 .highlighted {
-    background-color: #A4DC92;
+    background-color: #A4DC92 !important;
 }
 
 td.busy {
     background-color: #D86464;
+    /* border: none !important; */
 }
 
 td.inactive {
     background-color: #EEEEEE;
-}
-
-.busy {
-    color: #D86464;
+    /* border: none !important; */
 }
 
 button.disabled {
@@ -66,6 +68,7 @@ button.disabled {
     text-overflow: ellipsis;
     overflow: hidden;
     text-align: center;
+    padding: 4px;
 }
 
 .usernameRow {
@@ -90,14 +93,33 @@ button.disabled {
 .headingRow {
     background-color: cornflowerblue;
     color: white;
+    padding-top: 2em;
+}
+
+.heading {
+    background-color: cornflowerblue;
+    /* background: url('../img/office.jpg') no-repeat; */
+    /* background-size: cover; */
+    width: 100%;
+    color: #34538A;
+    padding-bottom: 2em;
+    /* text-shadow: 0px 0px 2px rgba(255, 255, 255, 0.4); */
+}
+
+.navbar-form {
+    box-shadow: none !important;
+    border: none !important;
+}
+
+.navbar input {
+    background-color: #1E3152;
+    color: white;
+    border: none;
+    text-shadow: none;
 }
 
 .headingRow div {
     padding: 0 2em;
-}
-
-.headingRow p em {
-    color: #C7D2FF;
 }
 
 .headingRow h2 {
@@ -109,22 +131,31 @@ button.disabled {
 }
 
 .title {
-    padding: 1em;
-    font-size: 4em;
+    padding: 0.8em;
+    font-size: 3.8em;
+    text-shadow: #34538A 0px 1px 2px;
+    color: white;
 }
 
-.navbar-form input {
-    min-width: 16em;
+.heading p {
+    padding: 0 2em;
 }
 
 .navbar {
     border-radius: 0 !important;
-    margin: 0 -15px !important;
+    margin: 0 -15px;
     border: none !important;
+}
+
+a.navbar-brand {
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: cornflowerblue !important;
+    font-size: 1.4em;
 }
 
 .navbar-default {
     background-color: #34538A;
+    padding: 0 2em;
 }
 
 .big-text {
@@ -138,6 +169,10 @@ button.disabled {
 .schedule-heading {
     font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.8em;
+}
+
+.task-description {
+    font-size: 1.2em;
 }
 
 .custom-panel {
@@ -165,7 +200,7 @@ button.disabled {
 }
 
 p {
-    font-size: 1.2em;
+    font-size: 1.25em;
 }
 
 .instructions {

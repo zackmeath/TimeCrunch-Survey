@@ -1,13 +1,29 @@
 function login() {
     var username = $('#username').val();
     $.ajax({
-        type: "POST",
-        url: "/user/cashtag/" + username,
+        type: "GET",
+        url: "http://liamca.in:3000/api/survey/user/cashtag/" + username,
+        crossDomain: true,
         success: function(response) {
-            createCookie('username', username, 7);
-            window.location.href = "schedule.html";
+            if (response.success) {
+                var data = response.data[0];
+                createCookie('username', data.cashtag, 365);
+                createCookie('score', data.questionsansweredcount, 365);
+                createCookie('uid', data.uid, 365);
+                createCookie('jobstart', data.jobstart, 365);
+                createCookie('jobend', data.jobend, 365);
+                createCookie('procrastinator', data.procrastinator, 365);
+                createCookie('hasjob', data.hasjob, 365);
+                createCookie('sleeptime', data.sleeptime, 365);
+                createCookie('wakeuptime', data.wakeuptime, 365);
+                createCookie('gender', data.gender, 365);
+                window.location.href = "schedule.html";
+            } else {
+                // console.log(response.err);
+            }
         },
-        dataType: "json"
+        dataType: "json",
+        xhrFields: { withCredentials: false }
     });
 }
 
@@ -18,6 +34,14 @@ function getGender() {
 function getAge() {
     var e = document.getElementById("age");
     return e.options[e.selectedIndex].value;
+}
+
+function hasJob() {
+    var employed = $('input[name=employed]:checked');
+    if (employed) {
+        return employed.val() === "job";
+    }
+    return null;
 }
 
 function isProcrastinator() {
@@ -55,8 +79,13 @@ function signup() {
     var procrastinator = isProcrastinator();
     var wakeTime = getWakeTime();
     var bedTime = getBedTime();
-    var jobStart = getJobStart();
-    var jobEnd = getJobEnd();
+    var isEmployed = hasJob();
+    var jobStart = null;
+    var jobEnd = null;
+    if (isEmployed) {
+        jobStart = getJobStart();
+        jobEnd = getJobEnd();
+    }
 
     var signupData = {
         Cashtag: username,
@@ -65,18 +94,47 @@ function signup() {
         Procrastinator: procrastinator,
         WakeUpTime: wakeTime,
         SleepTime: bedTime,
-        HasJob: true,
+        HasJob: isEmployed,
         JobStart: jobStart,
         JobEnd: jobEnd
     };
 
     $.ajax({
         type: "POST",
-        url: "/user/",
+        url: "http://liamca.in:3000/api/survey/user/",
         data: signupData,
+        crossDomain: true,
         success: function(response) {
-
+            if (response.success) {
+                var data = response.data[0];
+                createCookie('username', data.username, 365);
+                createCookie('score', data.questionsansweredcount, 365);
+                createCookie('uid', data.uid, 365);
+                createCookie('jobstart', data.jobstart, 365);
+                createCookie('jobend', data.jobend, 365);
+                createCookie('procrastinator', data.procrastinator, 365);
+                createCookie('hasjob', data.hasjob, 365);
+                createCookie('sleeptime', data.sleeptime, 365);
+                createCookie('wakeuptime', data.wakeuptime, 365);
+                createCookie('gender', data.gender, 365);
+                window.location.href = "schedule.html";
+            } else {
+                $('#error-alert').show();
+            }
         },
-        dataType: "json"
+        dataType: "json",
+        xhrFields: { withCredentials: false }
     });
 }
+
+$("#new-username").keyup(function(event) {
+    if (event.keyCode == 13) {
+        signup();
+    }
+});
+
+$("#username").keyup(function(event) {
+    if (event.keyCode == 13) {
+        login();
+    }
+});
