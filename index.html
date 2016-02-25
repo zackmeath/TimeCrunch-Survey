@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
-
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -114,7 +112,8 @@
                                             <input type="radio" name="work-ethic" value="procrastinator"/>Early
                                         </label>
                                         <label class="btn btn-default">
-                                            <input type="radio" name="work-ethic" value="not-procrastinator" />Ontime
+                                            <input type="radio" name="work-ethic" value="not-procrastinator"
+                                            />Eventually
                                         </label>
                                     </div>
                                 </div>
@@ -173,15 +172,15 @@
                                 <div class="form-group">
                                     <label for="employed">Are you employed full-time? </label><br>
                                     <div class="btn-group" id="employed" data-toggle="buttons">
-                                        <label class="btn btn-default">
-                                            <input type="radio" name="employed" value="no-job" /> No
+                                        <label class="btn btn-default active">
+                                            <input type="radio" name="employed" value="no-job" checked="checked" /> No
                                         </label>
                                         <label class="btn btn-default">
                                             <input type="radio" name="employed" value="job" /> Yes
                                         </label>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group disabled" id="form-jobstart">
                                     <label for="jobstart">What time do you go to work?</label><br>
                                     <select class="selectpicker" id="jobstart">
                                         <option value="20">5am</option>
@@ -199,7 +198,7 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group disabled" id="form-jobend">
                                     <label for="jobend">What time do you get home from work?</label><br>
                                     <select class="selectpicker" id="jobend">
                                         <option value="56">2pm</option>

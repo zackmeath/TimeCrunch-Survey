@@ -107,16 +107,16 @@ function signup() {
         success: function(response) {
             if (response.success) {
                 var data = response.data[0];
-                createCookie('username', data.username, 365);
-                createCookie('score', data.questionsansweredcount, 365);
                 createCookie('uid', data.uid, 365);
-                createCookie('jobstart', data.jobstart, 365);
-                createCookie('jobend', data.jobend, 365);
-                createCookie('procrastinator', data.procrastinator, 365);
-                createCookie('hasjob', data.hasjob, 365);
-                createCookie('sleeptime', data.sleeptime, 365);
-                createCookie('wakeuptime', data.wakeuptime, 365);
-                createCookie('gender', data.gender, 365);
+                createCookie('username', username, 365);
+                createCookie('gender', gender, 365);
+                createCookie('score', 0, 365);
+                createCookie('jobstart', jobStart, 365);
+                createCookie('jobend', jobEnd, 365);
+                createCookie('procrastinator', procrastinator, 365);
+                createCookie('hasjob', isEmployed, 365);
+                createCookie('wakeuptime', wakeTime, 365);
+                createCookie('sleeptime', bedTime, 365);
                 window.location.href = "schedule.html";
             } else {
                 $('#error-alert').show();
@@ -138,3 +138,9 @@ $("#username").keyup(function(event) {
         login();
     }
 });
+
+$('#employed input:radio').change(function() {
+        $('#form-jobstart').toggleClass("disabled");
+        $('#form-jobend').toggleClass("disabled");
+    }
+);

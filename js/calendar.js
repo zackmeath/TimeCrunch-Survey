@@ -1,64 +1,80 @@
 // profile
-var username  = null;
-var uid       = -1;
-var hasJob    = false;
-var jobstart  = null;
-var jobend    = null;
-var waketime  = 8 * 4;
-var sleeptime = 20 * 4;
 
-var timeslots;
-var timeslotsRemaining;
-var startInterval;
-var startDay;
-var endInterval;
-var daysUntilDueDate;
-var numHoursAwake = 15;
-
-var isMouseDown = false;
-var isHighlighted = false;
-var score = 0;
-
-function loadProfile() {
-    username      = readCookie("username");
-    uid           = readCookie("uid");
-    score         = readCookie("score");
-    hasJob        = readCookie("hasjob");
-    jobstart      = readCookie("jobstart");
-    jobend        = readCookie("jobend");
-    waketime      = readCookie("wakeuptime");
-    sleeptime     = readCookie("sleeptime");
-    numHoursAwake = (sleeptime - waketime) / 4;
-    $("#score").text(score);
-    $("#username").text(username);
+var profile = {
+    username: null,
+    uid: -1,
+    hasJob: false,
+    jobstart: null,
+    jobend: null,
+    waketime: 8 * 4,
+    sleeptime:20 * 4,
+    score:  0,
+    numHoursAwake: 15
 }
 
-function getRandomTaskTitle() {
-    var taskTitles = [
-        "file taxes",
-        "laundry",
-        "math homework",
-        "go fishing",
-        "kill Hitler",
-        "bake cookies",
-        "assemble a puzzle",
-        "go grocery shopping"
+var task = null;
+var isMouseDown = false;
+var isHighlighted = false;
+
+function loadProfile() {
+    profile.username      = readCookie("username");
+    profile.uid           = readCookie("uid");
+    profile.score         = readCookie("score");
+    profile.hasJob        = readCookie("hasjob") === "true";
+    profile.jobstart      = readCookie("jobstart");
+    profile.jobend        = readCookie("jobend");
+    profile.waketime      = readCookie("wakeuptime");
+    profile.sleeptime     = readCookie("sleeptime");
+    profile.numHoursAwake = (profile.sleeptime - profile.waketime) / 4;
+    $("#score").text(profile.score);
+    $("#username").text(profile.username);
+}
+
+function getRandomTask() {
+    var tasks = [
+        { name: "file taxes",                                 sentiment: -1 },
+        { name: "do laundry",                                 sentiment: -1 },
+        { name: "do math homework",                           sentiment: -1 },
+        { name: "clean the house",                            sentiment: -1 },
+        { name: "sweep the chimney",                          sentiment: -1 },
+        { name: "do community service",                       sentiment: -1 },
+        { name: "clean out the fridge",                       sentiment: 0 },
+        { name: "hide the body",                              sentiment: 0 },
+        { name: "read a book",                                sentiment: 0 },
+        { name: "kill Hitler",                                sentiment: 0 },
+        { name: "practise your magic tricks",                 sentiment: 0 },
+        { name: "go grocery shopping",                        sentiment: 0 },
+        { name: "mow the lawn",                               sentiment: 0 },
+        { name: "bake cookies",                               sentiment: 1 },
+        { name: "assemble a puzzle",                          sentiment: 1 },
+        { name: "go fishing",                                 sentiment: 1 },
+        { name: "rewatch Game of Thrones",                       sentiment: 1 },
+        { name: "find out why they whitewashed Gods of Egypt", sentiment: 1 },
+        { name: "build a snowman",                             sentiment: 1 },
     ];
-    return taskTitles[randomInt(0, taskTitles.length-1)];
+    return tasks[randomInt(0, tasks.length-1)];
 }
 
 function generateTask() {
-    timeslots        = timeslotsRemaining = randomInt(1, 10);
-    startInterval    = randomInt(0, numHoursAwake-1);
-    startDay         = randomInt(0, 7);
-    endInterval      = randomInt(0, numHoursAwake-1);
-    daysUntilDueDate = randomInt(1, 21);
+    var randomTask = getRandomTask();
+    var randomTimeslots = randomInt(1, 10);
+
+    task = {
+        title:              randomTask.name,
+        sentiment:          randomTask.sentiment,
+        timeslots:          randomTimeslots,
+        timeslotsRemaining: randomTimeslots,
+        startInterval:      randomInt(0, profile.numHoursAwake-1),
+        startDay:           randomInt(0, 7),
+        endInterval:        randomInt(0, profile.numHoursAwake-1),
+        daysUntilDueDate:   randomInt(1, 21)
+    };
     generateTable();
 
-    $("#time-remaining").text(timeslotsRemaining + ":00");
-    $("#due-date").text(daysUntilDueDate);
-    $("#eta").text(timeslots);
-    $("#task-title").text(getRandomTaskTitle());
+    $("#time-remaining").text(task.timeslotsRemaining + ":00");
+    $("#due-date").text(task.daysUntilDueDate);
+    $("#eta").text(task.timeslots);
+    $("#task-title").text(task.title);
     $("#next-button").addClass("disabled");
     $("#error-alert").hide();
     isMouseDown = false;
@@ -80,26 +96,28 @@ function getDueDateInterval() {
 }
 
 function next() {
-    if (timeslotsRemaining == 0){
+    if (task.timeslotsRemaining == 0){
         var taskData = {
-            UID: uid,
-            TaskSentiment: 0,
-            TaskLength: timeslots,
+            UID:                    profile.uid,
+            TaskSentiment:          task.sentiment,
+            TaskLength:             task.timeslots,
             TaskScheduledDateMonth: 0,
-            TaskScheduledDoW: startDay,
-            TaskScheduledTime: startInterval,
-            TaskDueDate: getDueDateInterval(),
-            Chunks: getCellsWithClass("highlighted"),
-            Obstacles: getCellsWithClass("busy")
+            TaskScheduledDoW:       task.startDay,
+            TaskScheduledTime:      task.startInterval,
+            TaskDueDate:            getDueDateInterval(),
+            Chunks:                 getCellsWithClass("highlighted"),
+            Obstacles:              getCellsWithClass("busy")
         };
+
         $.ajax({
             type: "POST",
             url: "http://liamca.in:3000/api/survey/task/",
             data: taskData,
             crossDomain: true,
             success: function(response) {
-                score++;
-                $("#score").text(score);
+                profile.score = response.score;
+                createCookie("score", profile.score, 365);
+                $("#score").text(profile.score);
                 generateTask();
             },
             dataType: "json",
@@ -116,12 +134,12 @@ function generateTable() {
     var tbody = document.createElement("tbody");
 
     var intervalsPerHour = 1;
-    var numCols = daysUntilDueDate;
-    var numRows = intervalsPerHour * numHoursAwake;
+    var numCols = task.daysUntilDueDate;
+    var numRows = intervalsPerHour * profile.numHoursAwake;
 
     var time = new Date();
-    time.setDate(startDay);
-    time.setHours(waketime / 4);
+    time.setDate(task.startDay);
+    time.setHours(profile.waketime / 4);
     time.setMinutes(0);
 
     // table headings
@@ -148,20 +166,22 @@ function generateTable() {
         for (var col = 0; col < numCols; col++) {
             var td = document.createElement("td");
             td.id = (col * 96) + (row * 4);
-            if (col === 0 && row === startInterval) {
+            if (col === 0 && row === task.startInterval) {
                 td.className = "startTime";
-            } else if (col === 0 && row < startInterval) {
+            } else if (col === 0 && row < task.startInterval) {
                 td.className = "inactive";
-            } else if (col === daysUntilDueDate - 1 && row === endInterval) {
+            } else if (col === task.daysUntilDueDate - 1 && row === task.endInterval) {
                 td.className = "endTime";
-            } else if (col === daysUntilDueDate - 1 && row > endInterval) {
+            } else if (col === task.daysUntilDueDate - 1 && row > task.endInterval) {
                 td.className = "inactive";
-            } else if (hasJob) {
-                var interval = parseInt(waketime) + row * 4;
-                var day = (startDay + col) % 7
-                if (day >= 1 && day <= 5 && interval >= jobstart && interval < jobend) {
+            } else if (profile.hasJob === true) {
+                var interval = parseInt(profile.waketime) + row * 4;
+                var day = (task.startDay + col) % 7
+                if (day >= 1 && day <= 5 && interval >= profile.jobstart && interval < profile.jobend) {
                     td.className = "busy";
                 }
+            } else if (Math.random() < 0.1) {
+                td.className = "busy";
             }
             if (td.className == "") {
                 numAvailableSlots++;
@@ -172,17 +192,16 @@ function generateTable() {
     }
     table.appendChild(tbody);
 
-    if (numAvailableSlots < timeslots) {
+    if (numAvailableSlots < task.timeslots) {
         generateTask();
     }
 }
 
 $(function () {
     loadProfile();
-    if (!username) { // if no username, "logout"
+    if (!profile.username) { // if no username, "logout"
         window.location.href = "liamca.in/survey/";
     }
-
     generateTask();
 
     $("#calendar").on("mousedown", "td", function () {
@@ -195,18 +214,18 @@ $(function () {
         }
 
         if (alreadyHighlighted) {
-            timeslotsRemaining++;
+            task.timeslotsRemaining++;
             $(this).toggleClass("highlighted", false);
             isHighlighted = false;
         } else {
-            if (timeslotsRemaining > 0) {
-                timeslotsRemaining--;
+            if (task.timeslotsRemaining > 0) {
+                task.timeslotsRemaining--;
                 $(this).toggleClass("highlighted", true);
                 isHighlighted = true;
             }
         }
-        $("#time-remaining").text(timeslotsRemaining + ":00");
-        $("#next-button").toggleClass("disabled", timeslotsRemaining > 0);
+        $("#time-remaining").text(task.timeslotsRemaining + ":00");
+        $("#next-button").toggleClass("disabled", task.timeslotsRemaining > 0);
         return false; // prevent text selection
     });
 
@@ -217,20 +236,20 @@ $(function () {
             }
             var alreadyHighlighted = $(this).hasClass("highlighted");
             if (isHighlighted) {
-                if (timeslotsRemaining > 0) {
+                if (task.timeslotsRemaining > 0) {
                     $(this).toggleClass("highlighted", isHighlighted);
                     if (!alreadyHighlighted) {
-                        timeslotsRemaining--;
+                        task.timeslotsRemaining--;
                     }
                 }
             } else {
                 $(this).toggleClass("highlighted", isHighlighted);
                 if (alreadyHighlighted) {
-                    timeslotsRemaining++;
+                    task.timeslotsRemaining++;
                 }
             }
-            $("#time-remaining").text(timeslotsRemaining + ":00");
-            $("#next-button").toggleClass("disabled", timeslotsRemaining > 0);
+            $("#time-remaining").text(task.timeslotsRemaining + ":00");
+            $("#next-button").toggleClass("disabled", task.timeslotsRemaining > 0);
         }
     });
     $("#calendar").on("selectstart", "td", function () {
